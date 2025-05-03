@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "./AuthProvider";
 import { ReactNode } from "react";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  // If user is not authenticated (no token), redirect to login
+  // If authenticated, show the private route
+  return !localStorage.getItem("token") ? <Navigate to="/login" /> : children;
 };
 
 export default PrivateRoute;

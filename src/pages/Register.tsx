@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../utils/AxiosInstance";
 
 export type RegisterInput = {
@@ -10,8 +10,6 @@ export type RegisterInput = {
 };
 
 export const Register = () => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -19,13 +17,13 @@ export const Register = () => {
   } = useForm<RegisterInput>();
   const handleRegister = async (data: RegisterInput) => {
     try {
-      await axios.post("/api/auth/register", {
+      await axios.post("/auth/register", {
         email: data.email,
         username: data.username,
         password: data.password
       });
       alert("User successfully registered");
-      navigate("/login");
+      window.location.href = "/login";
     } catch (err) {
       alert("Username or email already registered");
     }
@@ -121,15 +119,10 @@ export const Register = () => {
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <a
-            onClick={() => {
-              navigate("/login");
-            }}
-            className="text-blue-600 hover:underline"
-          >
+          Already have an account?{' '}
+          <Link to="/login" className="text-blue-600 hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>
