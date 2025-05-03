@@ -2,12 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { layananApi } from '../utils/api';
 
-interface Layanan {
-  id: number;
-  nama: string;
-  deskripsi: string;
-  harga: number;
-}
 
 const EditLayanan = () => {
   const { id } = useParams<{ id: string }>();

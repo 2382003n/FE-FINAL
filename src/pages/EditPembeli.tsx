@@ -2,13 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { pembeliApi } from '../utils/api';
 
-interface Pembeli {
-  id: number;
-  nama: string;
-  alamat: string;
-  telepon: string;
-  email: string;
-}
 
 const EditPembeli = () => {
   const { id } = useParams<{ id: string }>();
